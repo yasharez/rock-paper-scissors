@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            //Begin rock paper scissors backend
+            //Need a function computerPlay() that returns one of rock, paper or scissors
+            //Need a function that plays the game, takes in two parameters (playerSelection and computerSelection) and also returns a statement that declares the winner of the round
+            //  make sure that the function takes into account case sensitivity
+            //Need to return the results of the function. 
+            //Function game() that uses the previous function inside of it, that plays 5 round game
+
+            //computerPlay function that returns rock, paper or scissors
+            function computerPlay(){
+                let switchValue = Math.floor(Math.random() * 3)             // Returns random number between 0-2
+                let computerChoice
+                switch(switchValue){
+                    case 0:
+                        computerChoice = "rock"
+                        break
+                    case 1:
+                        computerChoice = "paper"
+                        break
+                    case 2:
+                        computerChoice = "scissors"
+                        break
+                }
+                return computerChoice
+            }
+            console.log(computerPlay())
+        </script>
+    </body>
+</html>
