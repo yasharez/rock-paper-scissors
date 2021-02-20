@@ -83,6 +83,10 @@
                     let playerSelection = button.textContent;
                     let roundPlayed = playRound(playerSelection, computerSelection);
                     console.log(roundPlayed);
+                    humanWin++;
+                    if(humanWin > 3){
+                        console.log("game is over");
+                    }
                 });
             });
                 // while(roundCount < 5){
