@@ -32,78 +32,86 @@
 
             //computerPlay function that returns rock, paper or scissors
             function computerPlay(){
-                let switchValue = Math.floor(Math.random() * 3)             // Returns random number between 0-2
-                let computerChoice
+                let switchValue = Math.floor(Math.random() * 3);             // Returns random number between 0-2
+                let computerChoice;
                 switch(switchValue){
                     case 0:                                                 // Assigns rock to computer
-                        computerChoice = "rock"
-                        break
+                        computerChoice = "rock";
+                        break;
                     case 1:                                                 // Assigns paper to computer
-                        computerChoice = "paper"
-                        break
+                        computerChoice = "paper";
+                        break;
                     case 2:
-                        computerChoice = "scissors"                         // Assigns scissors to computer
-                        break
-                }
-                return computerChoice
-            }
+                        computerChoice = "scissors";                         // Assigns scissors to computer
+                        break;
+                };
+                return computerChoice;
+            };
 
             //function that plays one round of rock paper scissors and returns a win/lose statement
             function playRound(playerSelection, computerSelection){
-                playerSelection = playerSelection.toLowerCase()
-                computerSelection = computerSelection.toLowerCase()
+                playerSelection = playerSelection.toLowerCase();
+                computerSelection = computerSelection.toLowerCase();
                 if(playerSelection === computerSelection){                                      // Checks for tie
-                    return "Tie game!"
-                }
+                    return "Tie game!";
+                };
                 if(playerSelection === "rock" && computerSelection === "paper"){                        
-                    return "You lose! Paper beats Rock"
+                    return "You lose! Paper beats Rock";
                 } else if (playerSelection === "rock" && computerSelection === "scissors"){
-                    return "You win! Rock beats Scissors"
-                }
+                    return "You win! Rock beats Scissors";
+                };
                 if(playerSelection === "paper" && computerSelection === "scissors"){
-                    return "You lose! Scissors beats Paper"
+                    return "You lose! Scissors beats Paper";
                 } else if (playerSelection === "paper" && computerSelection === "rock"){
-                    return "You win! Paper beats Rock"
-                }
+                    return "You win! Paper beats Rock";
+                };
                 if(playerSelection === "scissors" && computerSelection === "rock"){
-                    return "You lose! Rock beats Scissors"
+                    return "You lose! Rock beats Scissors";
                 } else if (playerSelection === "scissors" && computerSelection === "paper"){
-                    return "You win! Scissors beats paper"
-                }
+                    return "You win! Scissors beats paper";
+                };
             }
 
             //function that plays a 5 round game and reports a winner or loser at the end
-            function game(){
-                let roundCount = 0
-                let humanWin = 0
-                let computerWin = 0
-                while(roundCount < 5){
-                    let playerSelection = window.prompt("Rock, Paper, or Scissors?")
-                    let computerSelection = computerPlay()
-                    let roundPlayed = playRound(playerSelection, computerSelection)
-                    if(roundPlayed.slice(4,5) === "w"){
-                        humanWin++
-                    }else if(roundPlayed.slice(4,5) === "l"){
-                        computerWin++
-                    }
-                    roundCount++
-                    console.log("Human played: " + playerSelection)
-                    console.log("Computer played: " + computerSelection)
-                    console.log(roundCount)
-                    console.log(roundPlayed)
-                    console.log("Human has " + humanWin + " wins")
-                    console.log("Computer has " + computerWin + " wins")
-                }
-                if(humanWin > computerWin){
-                    console.log("Human Wins!")
-                }else if(humanWin < computerWin){
-                    console.log("Computer Wins!")
-                }else{
-                    console.log("Tie game!")
-                }
-            }
+            // function game(){
+            let humanWin = 0;
+            let computerWin = 0;
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach((button) => {
+                button.addEventListener('click', function(){
+                    let computerSelection = computerPlay();
+                    let playerSelection = button.textContent;
+                    let roundPlayed = playRound(playerSelection, computerSelection);
+                    console.log(roundPlayed);
+                });
+            });
+                // while(roundCount < 5){
+                //     let playerSelection = window.prompt("Rock, Paper, or Scissors?")
+                //     let computerSelection = computerPlay()
+                //     let roundPlayed = playRound(playerSelection, computerSelection)
+                //     if(roundPlayed.slice(4,5) === "w"){
+                //         humanWin++
+                //     }else if(roundPlayed.slice(4,5) === "l"){
+                //         computerWin++
+                //     }
+                //     roundCount++
+                //     console.log("Human played: " + playerSelection)
+                //     console.log("Computer played: " + computerSelection)
+                //     console.log(roundCount)
+                //     console.log(roundPlayed)
+                //     console.log("Human has " + humanWin + " wins")
+                //     console.log("Computer has " + computerWin + " wins")
+                // }
+                // if(humanWin > computerWin){
+                //     console.log("Human Wins!")
+                // }else if(humanWin < computerWin){
+                //     console.log("Computer Wins!")
+                // }else{
+                //     console.log("Tie game!")
+                // }
+            // };
             
-            //game()
+            // game();
 
         </script>
     </body>
