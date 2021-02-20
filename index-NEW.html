@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .center{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
     <head>
         <title>Rock Paper Scissors</title>
         <meta charset="UTF-8">
     </head>
     <body>
+        <div class = 'center'>
+            <h1>Let's Play Rock Paper Scissors!</h1>
+            <p>Select your choice below. First to 5 wins.</p>
+            <div>
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
+        </div>
         <script>
             //Begin rock paper scissors backend
             //Need a function computerPlay() that returns one of rock, paper or scissors
