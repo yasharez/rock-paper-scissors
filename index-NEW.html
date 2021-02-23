@@ -7,6 +7,10 @@
             justify-content: center;
             align-items: center;
         }
+
+        .score{
+            text-align: center;
+        }
     </style>
     <head>
         <title>Rock Paper Scissors</title>
@@ -16,7 +20,7 @@
         <div class = 'center'>
             <h1>Let's Play Rock Paper Scissors!</h1>
             <p>Select your choice below. First to 5 wins.</p>
-            <div>
+            <div id="button-container">
                 <button id="rock">Rock</button>
                 <button id="paper">Paper</button>
                 <button id="scissors">Scissors</button>
@@ -27,7 +31,7 @@
             //Need a function computerPlay() that returns one of rock, paper or scissors
             //Need a function that plays the game, takes in two parameters (playerSelection and computerSelection) and also returns a statement that declares the winner of the round
             //  make sure that the function takes into account case sensitivity
-            //Need to return the results of the function. 
+            //Need to return the results of the function.
             //Function game() that uses the previous function inside of it, that plays 5 round game
 
             //computerPlay function that returns rock, paper or scissors
@@ -55,7 +59,7 @@
                 if(playerSelection === computerSelection){                                      // Checks for tie
                     return "Tie game!";
                 };
-                if(playerSelection === "rock" && computerSelection === "paper"){                        
+                if(playerSelection === "rock" && computerSelection === "paper"){
                     return "You lose! Paper beats Rock";
                 } else if (playerSelection === "rock" && computerSelection === "scissors"){
                     return "You win! Rock beats Scissors";
@@ -72,20 +76,39 @@
                 };
             }
 
-            //function that plays a 5 round game and reports a winner or loser at the end
-            // function game(){
             let humanWin = 0;
             let computerWin = 0;
+            let roundCount = 0;
             const buttons = document.querySelectorAll('button');
+            //const score = document.querySelector('.score');
+            const buttonContainer = document.querySelector('#button-container');
             buttons.forEach((button) => {
                 button.addEventListener('click', function(){
                     let computerSelection = computerPlay();
                     let playerSelection = button.textContent;
                     let roundPlayed = playRound(playerSelection, computerSelection);
-                    console.log(roundPlayed);
-                    humanWin++;
-                    if(humanWin > 3){
-                        console.log("game is over");
+                    if(roundPlayed.slice(4,5) === "w"){
+                        humanWin++
+                    }else if(roundPlayed.slice(4,5) === "l"){
+                        computerWin++
+                    }
+                    const roundResult = document.createElement('div');
+                    roundResult.classList.add('score');
+                    const message = document.createElement('p');
+                    const scoreTally = document.createElement('p');
+                    message.textContent = roundPlayed;
+                    scoreTally.textContent = `Human: ${humanWin} \n Computer: ${computerWin}`
+                    if(roundCount === 0){
+                        roundResult.appendChild(message);
+                        roundResult.appendChild(scoreTally);
+                        buttonContainer.appendChild(roundResult);
+                        roundCount++;
+                    }else{
+                        let newRoundResult = document.getElementsByClassName('score');
+                        let newMessage = newRoundResult.firstChild;
+                        newMessage.textContent = roundPlayed;
+                        let newScoreTally = newRoundResult.lastChild;
+                        newScoreTally.textContent = `Human: ${humanWin} \n Computer: ${computerWin}`
                     }
                 });
             });
@@ -114,7 +137,7 @@
                 //     console.log("Tie game!")
                 // }
             // };
-            
+
             // game();
 
         </script>
