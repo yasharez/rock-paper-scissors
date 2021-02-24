@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <style>
         .center{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-family: 'Architects Daughter', 'Open Sans';
         }
     </style>
     <head>
@@ -26,32 +29,25 @@
             <p id="scoreTally"></p>
         </div>
         <script>
-            //Begin rock paper scissors backend
-            //Need a function computerPlay() that returns one of rock, paper or scissors
-            //Need a function that plays the game, takes in two parameters (playerSelection and computerSelection) and also returns a statement that declares the winner of the round
-            //  make sure that the function takes into account case sensitivity
-            //Need to return the results of the function.
-            //Function game() that uses the previous function inside of it, that plays 5 round game
-
             //computerPlay function that returns rock, paper or scissors
             function computerPlay(){
                 let switchValue = Math.floor(Math.random() * 3);             // Returns random number between 0-2
                 let computerChoice;
                 switch(switchValue){
                     case 0:                                                 // Assigns rock to computer
-                        computerChoice = "rock";
+                        computerChoice = "Rock";
                         break;
                     case 1:                                                 // Assigns paper to computer
-                        computerChoice = "paper";
+                        computerChoice = "Paper";
                         break;
                     case 2:
-                        computerChoice = "scissors";                         // Assigns scissors to computer
+                        computerChoice = "Scissors";                         // Assigns scissors to computer
                         break;
                 };
                 return computerChoice;
             };
 
-            //function that plays one round of rock paper scissors and returns a win/lose statement
+            //playRound function that plays one round of rock paper scissors and returns a win/lose statement
             function playRound(playerSelection, computerSelection){
                 playerSelection = playerSelection.toLowerCase();
                 computerSelection = computerSelection.toLowerCase();
@@ -77,9 +73,7 @@
 
             let humanWin = 0;
             let computerWin = 0;
-            let roundCount = 0;
             const buttons = document.querySelectorAll('button');
-            //const score = document.querySelector('.score');
             const buttonContainer = document.querySelector('#button-container');
             const centered = document.querySelector('.center');
             buttons.forEach((button) => {
@@ -100,31 +94,6 @@
                     scoreTally.textContent = `Human: ${humanWin} \n\ Computer: ${computerWin}`;
                 });
             });
-                // while(roundCount < 5){
-                //     let playerSelection = window.prompt("Rock, Paper, or Scissors?")
-                //     let computerSelection = computerPlay()
-                //     let roundPlayed = playRound(playerSelection, computerSelection)
-                //     if(roundPlayed.slice(4,5) === "w"){
-                //         humanWin++
-                //     }else if(roundPlayed.slice(4,5) === "l"){
-                //         computerWin++
-                //     }
-                //     roundCount++
-                //     console.log("Human played: " + playerSelection)
-                //     console.log("Computer played: " + computerSelection)
-                //     console.log(roundCount)
-                //     console.log(roundPlayed)
-                //     console.log("Human has " + humanWin + " wins")
-                //     console.log("Computer has " + computerWin + " wins")
-                // }
-                // if(humanWin > computerWin){
-                //     console.log("Human Wins!")
-                // }else if(humanWin < computerWin){
-                //     console.log("Computer Wins!")
-                // }else{
-                //     console.log("Tie game!")
-                // }
-            // };
         </script>
     </body>
 </html>
