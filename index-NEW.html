@@ -7,10 +7,6 @@
             justify-content: center;
             align-items: center;
         }
-
-        .score{
-            text-align: center;
-        }
     </style>
     <head>
         <title>Rock Paper Scissors</title>
@@ -25,6 +21,9 @@
                 <button id="paper">Paper</button>
                 <button id="scissors">Scissors</button>
             </div>
+            <p id="itemPlayed"></p>
+            <p id="message"></p>
+            <p id="scoreTally"></p>
         </div>
         <script>
             //Begin rock paper scissors backend
@@ -82,6 +81,7 @@
             const buttons = document.querySelectorAll('button');
             //const score = document.querySelector('.score');
             const buttonContainer = document.querySelector('#button-container');
+            const centered = document.querySelector('.center');
             buttons.forEach((button) => {
                 button.addEventListener('click', function(){
                     let computerSelection = computerPlay();
@@ -92,24 +92,12 @@
                     }else if(roundPlayed.slice(4,5) === "l"){
                         computerWin++
                     }
-                    const roundResult = document.createElement('div');
-                    roundResult.classList.add('score');
-                    const message = document.createElement('p');
-                    const scoreTally = document.createElement('p');
+                    const itemPlayed = document.getElementById('itemPlayed');
+                    const message = document.getElementById('message');
+                    const scoreTally = document.getElementById('scoreTally');
+                    itemPlayed.textContent = `You played ${playerSelection} and computer played ${computerSelection}`;
                     message.textContent = roundPlayed;
-                    scoreTally.textContent = `Human: ${humanWin} \n Computer: ${computerWin}`
-                    if(roundCount === 0){
-                        roundResult.appendChild(message);
-                        roundResult.appendChild(scoreTally);
-                        buttonContainer.appendChild(roundResult);
-                        roundCount++;
-                    }else{
-                        let newRoundResult = document.getElementsByClassName('score');
-                        let newMessage = newRoundResult.firstChild;
-                        newMessage.textContent = roundPlayed;
-                        let newScoreTally = newRoundResult.lastChild;
-                        newScoreTally.textContent = `Human: ${humanWin} \n Computer: ${computerWin}`
-                    }
+                    scoreTally.textContent = `Human: ${humanWin} \n\ Computer: ${computerWin}`;
                 });
             });
                 // while(roundCount < 5){
@@ -137,9 +125,6 @@
                 //     console.log("Tie game!")
                 // }
             // };
-
-            // game();
-
         </script>
     </body>
 </html>
