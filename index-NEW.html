@@ -8,7 +8,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: 'Architects Daughter', 'Open Sans';
+            font-family: 'Open Sans';
+        }
+        .buttons{
+            padding: 10px;
         }
     </style>
     <head>
@@ -20,9 +23,9 @@
             <h1>Let's Play Rock Paper Scissors!</h1>
             <p>Select your choice below. First to 5 wins.</p>
             <div id="button-container">
-                <button id="rock">Rock</button>
-                <button id="paper">Paper</button>
-                <button id="scissors">Scissors</button>
+                <button id="rock" class="buttons">Rock</button>
+                <button id="paper" class="buttons">Paper</button>
+                <button id="scissors" class="buttons">Scissors</button>
             </div>
             <p id="itemPlayed"></p>
             <p id="message"></p>
@@ -71,8 +74,8 @@
                 };
             }
 
-            let humanWin = 0;
-            let computerWin = 0;
+            let humanWin = 4;
+            let computerWin = 4;
             const buttons = document.querySelectorAll('button');
             const buttonContainer = document.querySelector('#button-container');
             const centered = document.querySelector('.center');
@@ -91,7 +94,17 @@
                     const scoreTally = document.getElementById('scoreTally');
                     itemPlayed.textContent = `You played ${playerSelection} and computer played ${computerSelection}`;
                     message.textContent = roundPlayed;
-                    scoreTally.textContent = `Human: ${humanWin} \n\ Computer: ${computerWin}`;
+                    scoreTally.textContent = `Human: ${humanWin} Computer: ${computerWin}`;
+                    if(humanWin <= 5 && computerWin <= 5){
+                        centered.removeChild(centered.childNodes[6]);
+                        centered.removeChild(centered.childNodes[7]);
+                        centered.removeChild(centered.childNodes[8]);
+                    }
+                    if(computerWin >4){
+                        centered.removeChild(centered.childNodes[6]);
+                        centered.removeChild(centered.childNodes[7]);
+                        centered.removeChild(centered.childNodes[8]);
+                    }
                 });
             });
         </script>
