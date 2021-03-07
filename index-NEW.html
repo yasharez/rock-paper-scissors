@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <style>
         .center{
             display: flex;
@@ -9,6 +7,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Open Sans';
+            padding-top: 100px;
         }
         .buttons{
             padding: 10px;
@@ -81,30 +80,35 @@
             const centered = document.querySelector('.center');
             buttons.forEach((button) => {
                 button.addEventListener('click', function(){
-                    let computerSelection = computerPlay();
-                    let playerSelection = button.textContent;
-                    let roundPlayed = playRound(playerSelection, computerSelection);
-                    if(roundPlayed.slice(4,5) === "w"){
-                        humanWin++
-                    }else if(roundPlayed.slice(4,5) === "l"){
-                        computerWin++
-                    }
-                    const itemPlayed = document.getElementById('itemPlayed');
-                    const message = document.getElementById('message');
-                    const scoreTally = document.getElementById('scoreTally');
-                    itemPlayed.textContent = `You played ${playerSelection} and computer played ${computerSelection}`;
-                    message.textContent = roundPlayed;
-                    scoreTally.textContent = `Human: ${humanWin} Computer: ${computerWin}`;
-                    if(humanWin <= 5 && computerWin <= 5){
-                        centered.removeChild(centered.childNodes[6]);
-                        centered.removeChild(centered.childNodes[7]);
-                        centered.removeChild(centered.childNodes[8]);
-                    }
-                    if(computerWin >4){
-                        centered.removeChild(centered.childNodes[6]);
-                        centered.removeChild(centered.childNodes[7]);
-                        centered.removeChild(centered.childNodes[8]);
-                    }
+                    if(humanWin < 5 || computerWin < 5){
+                        let computerSelection = computerPlay();
+                        let playerSelection = button.textContent;
+                        let roundPlayed = playRound(playerSelection, computerSelection);
+                        if(roundPlayed.slice(4,5) === "w"){
+                            humanWin++
+                        }else if(roundPlayed.slice(4,5) === "l"){
+                            computerWin++
+                        }
+                        const itemPlayed = document.getElementById('itemPlayed');
+                        const message = document.getElementById('message');
+                        const scoreTally = document.getElementById('scoreTally');
+                        itemPlayed.textContent = `You played ${playerSelection} and computer played ${computerSelection}`;
+                        message.textContent = roundPlayed;
+                        scoreTally.textContent = `Human: ${humanWin} Computer: ${computerWin}`;
+                    };
+                    if(humanWin === 5){
+                        console.log('human won');
+                        centered.remove();
+                    };
+                    if(computerWin === 5){
+                        console.log('computer won');
+                        centered.remove();
+                    };
+                    // if(humanWin >= 5 || computerWin >= 5){
+                    //     centered.removeChild(centered.childNodes[6]);
+                    //     centered.removeChild(centered.childNodes[7]);
+                    //     centered.removeChild(centered.childNodes[8]);
+                    // }
                 });
             });
         </script>
