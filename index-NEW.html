@@ -18,6 +18,9 @@
         <meta charset="UTF-8">
     </head>
     <body>
+        <div id='result'>
+            <h2 id='final-message'></h2>
+        </div>
         <div class = 'center'>
             <h1>Let's Play Rock Paper Scissors!</h1>
             <p>Select your choice below. First to 5 wins.</p>
@@ -73,10 +76,15 @@
                 };
             }
 
+            function reloadPage(){
+                window.location.reload();
+            };
+
             let humanWin = 4;
             let computerWin = 4;
+            const result = document.getElementById('result');
+            const finalMessage = document.getElementById('final-message');
             const buttons = document.querySelectorAll('button');
-            const buttonContainer = document.querySelector('#button-container');
             const centered = document.querySelector('.center');
             buttons.forEach((button) => {
                 button.addEventListener('click', function(){
@@ -96,21 +104,29 @@
                         message.textContent = roundPlayed;
                         scoreTally.textContent = `Human: ${humanWin} Computer: ${computerWin}`;
                     };
-                    if(humanWin === 5){
+                    if(humanWin >= 5){
                         console.log('human won');
                         centered.remove();
+                        const playAgain = document.createElement('button');
+                        finalMessage.textContent = 'You beat the computer!';
+                        playAgain.textContent = 'Play Again';
+                        result.classList.add('center');
+                        playAgain.classList.add('buttons');
+                        result.appendChild(playAgain);
                     };
-                    if(computerWin === 5){
+                    if(computerWin >= 5){
                         console.log('computer won');
                         centered.remove();
+                        const playAgain = document.createElement('button');
+                        finalMessage.textContent = 'You lost to the computer!';
+                        playAgain.textContent = 'Play Again';
+                        result.classList.add('center');
+                        playAgain.classList.add('buttons');
+                        result.appendChild(playAgain);
                     };
-                    // if(humanWin >= 5 || computerWin >= 5){
-                    //     centered.removeChild(centered.childNodes[6]);
-                    //     centered.removeChild(centered.childNodes[7]);
-                    //     centered.removeChild(centered.childNodes[8]);
-                    // }
                 });
             });
+            button.addEventListener('click', reloadPage());
         </script>
     </body>
 </html>
