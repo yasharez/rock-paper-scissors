@@ -77,15 +77,16 @@
             }
 
             function reloadPage(){
-                window.location.reload();
+                document.location.reload();
             };
 
-            let humanWin = 4;
-            let computerWin = 4;
+            let humanWin = 0;
+            let computerWin = 0;
             const result = document.getElementById('result');
             const finalMessage = document.getElementById('final-message');
             const buttons = document.querySelectorAll('button');
             const centered = document.querySelector('.center');
+            const playAgain = document.createElement('button');
             buttons.forEach((button) => {
                 button.addEventListener('click', function(){
                     if(humanWin < 5 || computerWin < 5){
@@ -107,26 +108,29 @@
                     if(humanWin >= 5){
                         console.log('human won');
                         centered.remove();
-                        const playAgain = document.createElement('button');
                         finalMessage.textContent = 'You beat the computer!';
                         playAgain.textContent = 'Play Again';
                         result.classList.add('center');
                         playAgain.classList.add('buttons');
                         result.appendChild(playAgain);
+                        playAgain.onclick = function(){
+                            reloadPage();
+                        };
                     };
                     if(computerWin >= 5){
                         console.log('computer won');
                         centered.remove();
-                        const playAgain = document.createElement('button');
                         finalMessage.textContent = 'You lost to the computer!';
                         playAgain.textContent = 'Play Again';
                         result.classList.add('center');
                         playAgain.classList.add('buttons');
                         result.appendChild(playAgain);
+                        playAgain.onclick = function(){
+                            reloadPage();
+                        };
                     };
                 });
             });
-            button.addEventListener('click', reloadPage());
         </script>
     </body>
 </html>
